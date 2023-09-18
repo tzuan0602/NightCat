@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class RoleControlKB : MonoBehaviour
 {
+    public float moveSpeed = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        // 偵測滑鼠位置&移動
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)) // 目前先以鍵盤操作代替
+        if (Input.GetKeyDown(KeyCode.W)) 
         {
-
+            
         }
 
         if (Input.GetKeyDown(KeyCode.S)) 
         {
-
+            
         }
 
         if (Input.GetKeyDown(KeyCode.A)) 
