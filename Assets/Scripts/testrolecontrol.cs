@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testrolecontrol : MonoBehaviour
+public class TestRoleControl : MonoBehaviour
 {
     public float moveSpeed = 5f; // 移动速度
 
