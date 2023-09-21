@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestRoleControl : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 移动速度
+    public float MoveSpeed = 50f; // 移动速度
 
     private void Update()
     {
@@ -16,7 +16,7 @@ public class TestRoleControl : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized * moveSpeed * Time.deltaTime;
+        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized * MoveSpeed * Time.deltaTime;
 
         // 应用移动
         transform.Translate(moveDirection);

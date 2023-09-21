@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoleControlKB : MonoBehaviour
 {
-    public float moveSpeed = 10f;
+    public float MoveSpeed = 10f;
     // Start is called before the first frame update
     void Start()
     {
