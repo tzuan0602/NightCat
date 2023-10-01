@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Girl : GirlsTask
+public class Girl : GirlsTask //套用在少女物件上用於偵測
 {
     // Start is called before the first frame update
     void Start()
@@ -16,14 +17,17 @@ public class Girl : GirlsTask
         
     }
 
-    private void OnTriggerStay(Collider other) //NPC偵測玩家是否在範圍內並觸發ChatBox
+    private void OnTriggerStay(Collider other) //玩家進入偵測範圍並顯示ChatButton
     {
         GameObject.FindWithTag("Player");
         Debug.Log("偵測到玩家");
+        ChatIconOpen(ChatIconBtn);
+    }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ChatBoxOpen(ChatBox); //ChatBox顯示
-        }
+    private void OnTriggerExit(Collider other) //玩家遠離偵測範圍並隱藏ChatButton
+    {
+        Debug.Log("玩家已遠離");
+        ChatIconClose(ChatIconBtn);
+        ChatBoxClose(ChatBox);
     }
 }

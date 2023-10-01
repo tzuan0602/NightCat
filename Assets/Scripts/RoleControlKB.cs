@@ -34,6 +34,8 @@ public class RoleControlKB : MonoBehaviour
             this.gameObject.transform.Translate(Vector3.right * Time.deltaTime * MoveSpeed);
         }
 
+
+
         /*if (Input.GetKeyDown(KeyCode.W)) 
         {
             this.gameObject.transform.Translate(0, 0, 10);
