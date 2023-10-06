@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - obstacleTag
+  - topline
+  - bottomline
+  - leftline
+  - rightline
   layers:
   - Default
   - TransparentFX

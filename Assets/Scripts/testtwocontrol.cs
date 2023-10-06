@@ -1,10 +1,11 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestRoleControl : MonoBehaviour
+public class testtwocontrol : MonoBehaviour
 {
     public float movementSpeed = 5f;
+    public string obstacleTag = "Obstacle";
 
     private void Update()
     {
@@ -16,7 +17,7 @@ public class TestRoleControl : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f).normalized;
 
         if (movement.magnitude >= 0.1f)
         {
@@ -27,18 +28,18 @@ public class TestRoleControl : MonoBehaviour
 
     private void MoveToTarget(Vector3 targetPosition)
     {
-        Vector3 movementDirection = (targetPosition - transform.position).normalized;
+        Vector2 movementDirection = (targetPosition - transform.position).normalized;
         float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, movementDirection, out hit, distanceToTarget))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, movementDirection, distanceToTarget);
+        if (hit.collider != null && hit.collider.CompareTag(obstacleTag))
         {
-            // ç¢°åˆ°éšœç¤™ç‰©ï¼Œåœæ­¢ç§»å‹•
-            Debug.Log("ç¢°åˆ°éšœç¤™ç‰©");
+            // ¸I¨ì»Ù?ª«¡A°±¤î²¾?
+            Debug.Log("¸I¨ì»Ù?ª«");
         }
         else
         {
-            // æ²’æœ‰ç¢°åˆ°éšœç¤™ç‰©ï¼Œç¹¼çºŒç§»å‹•
+            // ?¦³¸I¨ì»Ù?ª«¡A??²¾?
             transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
         }
     }
