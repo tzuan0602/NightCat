@@ -10,6 +10,10 @@ public class RoleControlMouse : MonoBehaviour
     int b; //X最後位置
     int c; //Y初始位置
     int d; //Y最後位置
+
+    public float gridSizeHorizontal = 1.0f; // 左右方向的格子大小
+    public float gridSizeVertical = 1.0f; // 前後方向的格子大小
+    public float moveSpeed = 10.0f; // 移動速度
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +33,6 @@ public class RoleControlMouse : MonoBehaviour
         RightAndLeft();
     }
 
-    void LateUpdate()
-    {
-        
-    }
-
     void FrontAndBack()
     {
         float MouseY1 = (int)Input.mousePosition.y;
@@ -49,14 +48,16 @@ public class RoleControlMouse : MonoBehaviour
             d = (int)MouseY2;
             Debug.Log(d);
 
-            if (d - c > 0 && b - a < 300 && b - a > -300)
+            if (d - c > 0 && b - a < Mathf.Abs(300))
             {
-                this.gameObject.transform.Translate(0, 0.5f, 1);
+                this.gameObject.transform.Translate(Vector3.forward * gridSizeVertical);
+                //Move(Vector3.forward, gridSizeVertical);
                 Debug.Log("向前移動");
             }
-            if (d - c < 0 && b - a < 300 && b - a > -300)
+            if (d - c < 0 && b - a < Mathf.Abs(300))
             {
-                this.gameObject.transform.Translate(0, 0.5f, -1);
+                this.gameObject.transform.Translate(Vector3.back * gridSizeVertical);
+                //Move(Vector3.back, gridSizeVertical);
                 Debug.Log("向後移動");
             }
             else if (d - c == 0)
@@ -81,20 +82,40 @@ public class RoleControlMouse : MonoBehaviour
             b = (int)MouseX2;
             Debug.Log(b);
 
-            if (b - a > 0 && d - c < 300 && d - c > -300)
+            if (b - a < 0 && d - c < Mathf.Abs(300))
             {
-                this.gameObject.transform.Translate(1, 0.5f, 0);
-                Debug.Log("向右移動");
-            }
-            if (b - a < 0 && d - c < 300 && d - c > -300)
-            {
-                this.gameObject.transform.Translate(-1, 0.5f, 0);
+                this.gameObject.transform.Translate(Vector3.left * gridSizeHorizontal);
+                //Move(Vector3.left, gridSizeHorizontal);
                 Debug.Log("向左移動");
+            }
+            if (b - a > 0 && d - c < Mathf.Abs(300))
+            {
+                this.gameObject.transform.Translate(Vector3.right * gridSizeHorizontal);
+                //Move(Vector3.right, gridSizeHorizontal);
+                Debug.Log("向右移動");
             }
             else if (b - a == 0)
             {
                 Debug.Log("沒有移動");
             }
+        }
+    }
+
+    void Move(Vector3 direction, float gridSize)
+    {
+        // 計算目標位置
+        Vector3 targetPosition = transform.position + direction * gridSize;
+
+        // 移動向目標位置
+        StartCoroutine(MoveToPosition(targetPosition));
+    }
+
+    IEnumerator MoveToPosition(Vector3 targetPosition)
+    {
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 }
