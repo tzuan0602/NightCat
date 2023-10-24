@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grilmap : MonoBehaviour
+public class GrilMap : MonoBehaviour
 {
     public int gridSizeX = 10; // X軸上的格子數量
     public int gridSizeY = 20; // Z軸上的格子數量

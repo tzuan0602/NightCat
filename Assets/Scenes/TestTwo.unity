@@ -367,7 +367,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 16
   m_CollisionDetection: 0
 --- !u!65 &860106973
 BoxCollider:
@@ -449,8 +449,8 @@ Transform:
   m_GameObject: {fileID: 860106971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1.1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -464,9 +464,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 860106971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a4a1179d8119e4fbd4b4aef33fb81b, type: 3}
+  m_Script: {fileID: 11500000, guid: 963199d6ffca29b4db029c7fdfc90b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridSizeHorizontal: 1
+  gridSizeVertical: 1
+  moveSpeed: 10
 --- !u!1 &1221767982
 GameObject:
   m_ObjectHideFlags: 0

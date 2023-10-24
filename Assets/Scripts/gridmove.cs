@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gridmove : MonoBehaviour
+public class GridMove : MonoBehaviour
 {
     public float gridSizeHorizontal = 1.0f; // 左右方向的格子大小
     public float gridSizeVertical = 1.0f;   // 前後方向的格子大小

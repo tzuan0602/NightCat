@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class testtwocontrol : MonoBehaviour
+public class TestTwoControl : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public string obstacleTag = "Obstacle";  // 更改為你的障礙物Tag
