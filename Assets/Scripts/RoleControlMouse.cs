@@ -14,10 +14,12 @@ public class RoleControlMouse : MonoBehaviour
     public float gridSizeHorizontal = 1.0f; // 左右方向的格子大小
     public float gridSizeVertical = 1.0f; // 前後方向的格子大小
     public float moveSpeed = 10.0f; // 移動速度
+
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class RoleControlMouse : MonoBehaviour
         */
 
         FrontAndBack();
-        RightAndLeft();
+
     }
 
     void FrontAndBack()
@@ -48,15 +50,17 @@ public class RoleControlMouse : MonoBehaviour
             d = (int)MouseY2;
             Debug.Log(d);
 
-            if (d - c > 0 && b - a < Mathf.Abs(300))
+            if (d - c > 0)
             {
-                this.gameObject.transform.Translate(Vector3.forward * gridSizeVertical);
+                rb.velocity = Vector3.forward * 100;
+                //this.gameObject.transform.Translate(Vector3.forward * gridSizeVertical);
                 //Move(Vector3.forward, gridSizeVertical);
                 Debug.Log("向前移動");
             }
-            if (d - c < 0 && b - a < Mathf.Abs(300))
+            if (d - c < 0)
             {
-                this.gameObject.transform.Translate(Vector3.back * gridSizeVertical);
+                rb.velocity = Vector3.back * 100;
+                //this.gameObject.transform.Translate(Vector3.back * gridSizeVertical);
                 //Move(Vector3.back, gridSizeVertical);
                 Debug.Log("向後移動");
             }
@@ -67,7 +71,7 @@ public class RoleControlMouse : MonoBehaviour
         }
     }
 
-    void RightAndLeft()
+    void RightAndLeft() //修改為別的觸發方法?!
     {
         float MouseX1 = (int)Input.mousePosition.x;
         float MouseX2 = (int)Input.mousePosition.x;
@@ -82,15 +86,17 @@ public class RoleControlMouse : MonoBehaviour
             b = (int)MouseX2;
             Debug.Log(b);
 
-            if (b - a < 0 && d - c < Mathf.Abs(300))
+            if (b - a < 0)
             {
-                this.gameObject.transform.Translate(Vector3.left * gridSizeHorizontal);
+                rb.velocity = Vector3.left * 50;
+                //this.gameObject.transform.Translate(Vector3.left * gridSizeHorizontal);
                 //Move(Vector3.left, gridSizeHorizontal);
                 Debug.Log("向左移動");
             }
-            if (b - a > 0 && d - c < Mathf.Abs(300))
+            if (b - a > 0)
             {
-                this.gameObject.transform.Translate(Vector3.right * gridSizeHorizontal);
+                rb.velocity = Vector3.right * 50;
+                //this.gameObject.transform.Translate(Vector3.right * gridSizeHorizontal);
                 //Move(Vector3.right, gridSizeHorizontal);
                 Debug.Log("向右移動");
             }

@@ -23,11 +23,6 @@ public class AddForceTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetMouseButtonUp(0))
-        {
-            rb.velocity = Vector3.forward * 10;
-        }*/
-
         FrontAndBack();
     }
 
@@ -48,18 +43,47 @@ public class AddForceTest : MonoBehaviour
 
             if (d - c > 0 && b - a < Mathf.Abs(300))
             {
-                //this.gameObject.transform.Translate(Vector3.forward * gridSizeVertical);
                 rb.velocity = Vector3.forward * 10;
-                //Move(Vector3.forward, gridSizeVertical);
                 Debug.Log("向前移動");
             }
             if (d - c < 0 && b - a < Mathf.Abs(300))
             {
-                this.gameObject.transform.Translate(Vector3.back * gridSizeVertical);
-                //Move(Vector3.back, gridSizeVertical);
+                rb.velocity = Vector3.back * 10;
                 Debug.Log("向後移動");
             }
             else if (d - c == 0)
+            {
+                Debug.Log("沒有移動");
+            }
+        }
+    }
+
+    void RightAndLeft()
+    {
+        float MouseX1 = (int)Input.mousePosition.x;
+        float MouseX2 = (int)Input.mousePosition.x;
+        if (Input.GetMouseButtonDown(0)) //觸碰螢幕時的座標
+        {
+            a = (int)MouseX1;
+            Debug.Log(a);
+        }
+
+        if (Input.GetMouseButtonUp(0)) //手指離開螢幕時的座標
+        {
+            b = (int)MouseX2;
+            Debug.Log(b);
+
+            if (b - a < 0 && d - c < Mathf.Abs(300))
+            {
+                rb.velocity = Vector3.left * 10;
+                Debug.Log("向左移動");
+            }
+            if (b - a > 0 && d - c < Mathf.Abs(300))
+            {
+                rb.velocity = Vector3.right * 10;
+                Debug.Log("向右移動");
+            }
+            else if (b - a == 0)
             {
                 Debug.Log("沒有移動");
             }
